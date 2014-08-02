@@ -2,6 +2,40 @@
 
 /* Note: an asteroid image is included in this repo.
 Feel free to use it if you like. */
-html, body{
+html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  background: black url("space.jpg");
+  overflow: hidden;
+}
+.scoreboard {
+  z-index: 10;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-family: sans-serif;
+  color: white;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.spaceship {
+  position: absolute;
+  cursor: move;
+}
+
+.asteroid {
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 4000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  position: absolute;
 }
