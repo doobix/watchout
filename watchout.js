@@ -8,17 +8,75 @@ var currentScore = 0;
 var speed = 1000;
 
 var scoreBoard = d3.select(".scoreboard");
-
 var body = d3.select("body");
-
 var bodyWidth = window.innerWidth;
 var bodyHeight = window.innerHeight;
 var asteroidSize = 100;
 var asteroidNum = 5;
 var playerSize = 40;
-var playerCol = "green";
+
 var lastHit;
 var playerHit = false;
+
+var playerRotation = 0;
+
+// Key Codes
+// 38 = Up
+// 40 = Down
+// 37 = Left
+// 39 = Right
+var keyPressed = function() {
+  if (window.event.keyCode === 38) {
+    var data = body.select(".spaceship").data();
+
+    if (playerRotation === 0 || playerRotation === 360) {
+      data[0].y = data[0].y-5;
+      if (data[0].y < 0) {
+        data[0].y = bodyHeight - playerSize;
+      }
+    } else if (playerRotation === 90) {
+      data[0].x = data[0].x+5;
+      if (data[0].x > bodyWidth - playerSize) {
+        data[0].x = 0;
+      }
+    } else if (playerRotation === 180) {
+      data[0].y = data[0].y+5;
+      if (data[0].y > bodyHeight + playerSize) {
+        data[0].y = 0;
+      }
+    } else {
+      data[0].x = data[0].x-5;
+      if (data[0].x < 0) {
+        data[0].x = bodyWidth - playerSize;
+      }
+    }
+
+    body.select(".spaceship")
+        .style({"top": function(d){
+          return d.y + "px";
+        }})
+        .style({"left": function(d){
+          return d.x + "px";
+        }});
+  }
+  if (window.event.keyCode === 37) {
+    playerRotation = rotatePlayer(playerRotation-90);
+    body.select(".spaceship")
+        .style({"-webkit-transform": "rotate("+playerRotation+"deg)"});
+  }
+  if (window.event.keyCode === 39) {
+    playerRotation = rotatePlayer(playerRotation+90);
+    body.select(".spaceship")
+        .style({"-webkit-transform": "rotate("+playerRotation+"deg)"});
+  }
+  // console.log(window.event.keyCode);
+  function rotatePlayer(val) {
+    if (val < 0) val = 270;
+    if (val > 360) val = 90;
+    return val;
+  }
+}
+window.onkeydown = keyPressed;
 
 var init = function(){
   for (var i=0; i < asteroidNum; i++) {
@@ -33,7 +91,9 @@ var init = function(){
         .data([{x: x, y: y}])
         .attr("src", "images/asteroid" + asteroid + ".png")
         .style({"left": function(d){return d.x + "px"},
-                "top": function(d){return d.y + "px"}})
+                "top": function(d){return d.y + "px"},
+                "width": asteroidSize + "px",
+                "height": asteroidSize + "px"})
         .attr("width", asteroidSize + "px")
         .attr("height", asteroidSize + "px")
         .attr("class", "asteroid");
@@ -75,7 +135,9 @@ var player = body.append("img")
         .data([{x: bodyWidth/2, y: bodyHeight/2}])
         .attr("src", "images/spaceship.png")
         .style({"left": function(d){return d.x + "px"},
-                "top": function(d){return d.y + "px"}})
+                "top": function(d){return d.y + "px"},
+                "width": playerSize + "px",
+                "height": playerSize + "px"})
         // .attr("x", function(d){return d.x;})
         // .attr("y", function(d){return d.y;})
         // .attr("width", playerSize + "px")

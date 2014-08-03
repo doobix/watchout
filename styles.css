@@ -27,15 +27,15 @@ html, body {
   }
 }
 
-.spaceship {
-  position: absolute;
-  cursor: move;
-}
-
 .asteroid {
   -webkit-animation-name: spin;
   -webkit-animation-duration: 4000ms;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
   position: absolute;
+}
+
+.spaceship {
+  position: absolute;
+  cursor: move;
 }
