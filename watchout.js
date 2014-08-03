@@ -41,7 +41,7 @@ var keyPressed = function() {
       }
     } else if (playerRotation === 180) {
       data[0].y = data[0].y+5;
-      if (data[0].y > bodyHeight + playerSize) {
+      if (data[0].y > bodyHeight - playerSize) {
         data[0].y = 0;
       }
     } else {
