@@ -1,6 +1,8 @@
 #watchout
 
-This is a copy of the work I did on a private repo, originally a project from
-[Hack Reactor's](http://hackreactor.com) curriculum. This project was worked
-on with a pair; it's representative of the kind of problems that I've tackled,
-but not of my solo work.
+This project shows my first usage of D3.js that I collaborated on with a pair programming partner. We created a game with objects that fly around to random spots in the webpage. If the objects collide with the ship, the current score resets and the highest score is kept.
+
+We tried to mimic the look of the retro Atari Asteroids game.
+
+#Live Demo
+http://seewes.github.io/watchout/
