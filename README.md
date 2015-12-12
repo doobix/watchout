@@ -5,4 +5,4 @@ This project shows my first usage of D3.js that I collaborated on with a pair pr
 We tried to mimic the look of the retro Atari Asteroids game.
 
 #Live Demo
-http://seewes.github.io/watchout/
+http://doobix.github.io/watchout/
